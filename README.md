@@ -110,8 +110,8 @@ ChatGPTがあなたの日記リポジトリに読み書きできるようにし�
 
 1. ChatGPTで新しい **Project** を作る(名前は「日記」など自由)
 2. **Step 3で作った自分のリポジトリ**の
-   `setup/chatgpt-project-instructions.md` を開き、「Copy raw file」ボタン
-   (Rawボタン横のコピーアイコン)で全文コピーする
+   [`setup/chatgpt-project-instructions.md`](setup/chatgpt-project-instructions.md)
+   を開き、「Copy raw file」ボタン(Rawボタン横のコピーアイコン)で全文コピーする
    ※ リポジトリ作成の数十秒後に、このファイルは自動であなた専用に書き換わり
    ます(上部にあなたのリポジトリ名が入ります)。もし
    `YOUR_GITHUB_USERNAME` のままなら、少し待ってページを開き直してください
