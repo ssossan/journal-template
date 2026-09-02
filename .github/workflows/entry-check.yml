@@ -1,0 +1,38 @@
+name: Entry check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "entries/**"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - # actions/checkout v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Validate entries and scan privacy patterns
+        run: |
+          set +e
+          out=$(python3 scripts/check_entries.py)
+          code=$?
+          echo "$out"
+          if [ "$code" -ne 0 ]; then
+            gh label create journal-check --force >/dev/null 2>&1 || true
+            title="Entry検査で問題を検出($(TZ=Asia/Tokyo date +%F))"
+            existing=$(gh issue list --label journal-check --state open --json number --jq '.[0].number // empty')
+            body=$(printf '自動検査(scripts/check_entries.py)が次を検出しました:\n\n```\n%s\n```\n\n形式の問題は訂正で修復できます。[privacy]項目は本文を確認し、不要な情報なら現ファイルから削除してください(git履歴には残ります)。' "$out")
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "$body"
+            else
+              gh issue create --label journal-check --title "$title" --body "$body"
+            fi
+            exit 1
+          fi

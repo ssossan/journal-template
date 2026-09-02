@@ -1,0 +1,38 @@
+name: Journal reminder
+
+on:
+  schedule:
+    - cron: "0 12 * * *"  # 21:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    if: github.repository != 'ssossan/journal-template'
+    runs-on: ubuntu-latest
+    env:
+      GAP_DAYS: 3
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - # actions/checkout v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Check last entry date and open an issue if stale
+        run: |
+          latest=$(ls entries/*/*/*.md 2>/dev/null | sed 's|.*/||; s|\.md||' | sort | tail -1)
+          today=$(TZ=Asia/Tokyo date +%F)
+          if [ -z "$latest" ]; then
+            echo "no entries yet; skip"; exit 0
+          fi
+          gap=$(( ( $(date -d "$today" +%s) - $(date -d "$latest" +%s) ) / 86400 ))
+          echo "latest=$latest gap=$gap"
+          if [ "$gap" -lt "$GAP_DAYS" ]; then exit 0; fi
+          if gh issue list --label journal-reminder --state open --json number --jq length | grep -qv '^0$'; then
+            echo "reminder issue already open"; exit 0
+          fi
+          gh label create journal-reminder --force >/dev/null 2>&1 || true
+          gh issue create --label journal-reminder \
+            --title "日記が${gap}日空いています(最終: ${latest})" \
+            --body "ChatGPTの日記Projectで「今日の日記」と話しかけてみませんか。最後の記録は ${latest} です。このissueは次の保存後に閉じてOKです。"

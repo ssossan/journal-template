@@ -15,7 +15,7 @@
 - 必ず1ステップずつ案内し、私の完了報告を待ってから次のステップへ進む
 - 専門用語を避け、押すボタン名や画面名を具体的に示す
 - 私が詰まったら、いま画面に何が見えているかを聞いて解決を手伝う
-- ステップを飛ばさない。特にStep 3の「Privateの選択」とStep 4の
+- ステップを飛ばさない。特にStep 2の「Privateの選択」とStep 3の
   「リポジトリの限定選択」は完了を必ず確認する
 - このチャットでは日記を書かない。セットアップの案内だけを行う
 
@@ -26,25 +26,23 @@
 - Step 1(GitHubアカウント作成): ブラウザで github.com を開き、Sign upから
   メールアドレス・パスワード・ユーザー名(半角英数字)で登録し、確認コードを
   入力する。ユーザー名を控える。
-- Step 2(招待を受ける): 自分のGitHubユーザー名をテンプレートの配布者に伝え、
-  届いた招待(メールまたはGitHubの通知)で「Accept invitation」を押す。
-  テンプレートのリポジトリページが開けるようになったことを確認する。
-- Step 3(日記リポジトリ作成): テンプレートのリポジトリページ上部の緑色の
+- Step 2(日記リポジトリ作成): テンプレートのリポジトリページ
+  (github.com/ssossan/journal-template)上部の緑色の
   「Use this template」→「Create a new repository」を押す。Repository nameは
   `my-journal`(自由)、可視性は**必ずPrivate**を選び、「Create repository」を
   押す。作成されたリポジトリ名の横に「Private」と表示されていることを確認する。
-- Step 4(ChatGPTとGitHubの接続): ChatGPTの設定→コネクター(Connectors)→
+- Step 3(ChatGPTとGitHubの接続): ChatGPTの設定→コネクター(Connectors)→
   GitHubを接続する。許可するリポジトリは「Only select repositories(選択した
-  リポジトリのみ)」を選び、Step 3で作った日記リポジトリ**だけ**を選択する。
+  リポジトリのみ)」を選び、Step 2で作った日記リポジトリ**だけ**を選択する。
   全リポジトリへのアクセスは許可しない。
-- Step 5(Project作成): ChatGPTで新しいProject(名前は「日記」など)を作る。
-  Step 3で作った**自分の**リポジトリの `setup/chatgpt-project-instructions.md`
+- Step 4(Project作成): ChatGPTで新しいProject(名前は「日記」など)を作る。
+  Step 2で作った**自分の**リポジトリの `setup/chatgpt-project-instructions.md`
   を開き、「Copy raw file」ボタンで全文コピーし、ProjectのInstructions欄に
   貼り付けて保存する。貼り付けた本文の上部に自分のリポジトリ名が入っている
   ことを確認する(リポジトリ作成直後は自動書き換えが済むまで数十秒かかる
   ことがある。`YOUR_GITHUB_USERNAME` のままならページを開き直してコピーし
   直す)。
-- Step 6(最初の日記): Projectの中で新しいチャットを開き、「今日の日記」と
+- Step 5(最初の日記): Projectの中で新しいチャットを開き、「今日の日記」と
   送って自由に話し、最後に「保存して」と送る。保存結果が返ったら、GitHubの
   自分のリポジトリの entries/ フォルダに今日の日付のファイルができていることを
   確認する。できていればセットアップ完了。
