@@ -1,0 +1,32 @@
+name: Personalize template
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  personalize:
+    if: github.repository != 'ssossan/journal-template'
+    runs-on: ubuntu-latest
+    steps:
+      - # actions/checkout v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: true
+      - name: Replace repository placeholder
+        run: |
+          FILE=setup/chatgpt-project-instructions.md
+          if grep -q "YOUR_GITHUB_USERNAME/my-journal" "$FILE"; then
+            sed -i "s|YOUR_GITHUB_USERNAME/my-journal|${GITHUB_REPOSITORY}|" "$FILE"
+            sed -i "/↑ 必ず自分の/d" "$FILE"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add "$FILE"
+            git commit -m "chore: personalize instructions for ${GITHUB_REPOSITORY}"
+            git push
+          else
+            echo "already personalized"
+          fi

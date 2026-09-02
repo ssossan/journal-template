@@ -39,9 +39,11 @@
   全リポジトリへのアクセスは許可しない。
 - Step 5(Project作成): ChatGPTで新しいProject(名前は「日記」など)を作る。
   Step 3で作った**自分の**リポジトリの `setup/chatgpt-project-instructions.md`
-  を開いて本文を全部コピーし、ProjectのInstructions欄に貼り付ける。本文
-  上部の `YOUR_GITHUB_USERNAME/my-journal` を自分の「ユーザー名/リポジトリ名」
-  に書き換え(例: taro123/my-journal)、その下の書き換え案内行は削除して保存する。
+  を開き、「Copy raw file」ボタンで全文コピーし、ProjectのInstructions欄に
+  貼り付けて保存する。貼り付けた本文の上部に自分のリポジトリ名が入っている
+  ことを確認する(リポジトリ作成直後は自動書き換えが済むまで数十秒かかる
+  ことがある。`YOUR_GITHUB_USERNAME` のままならページを開き直してコピーし
+  直す)。
 - Step 6(最初の日記): Projectの中で新しいチャットを開き、「今日の日記」と
   送って自由に話し、最後に「保存して」と送る。保存結果が返ったら、GitHubの
   自分のリポジトリの entries/ フォルダに今日の日付のファイルができていることを

@@ -109,17 +109,13 @@ ChatGPTがあなたの日記リポジトリに読み書きできるようにし�
 ## Step 5. ChatGPTにProjectを作る
 
 1. ChatGPTで新しい **Project** を作る(名前は「日記」など自由)
-2. このリポジトリの
-   [`setup/chatgpt-project-instructions.md`](setup/chatgpt-project-instructions.md)
-   を開き、本文を**全部コピー**する
-3. Projectの **Instructions**(指示)欄に貼り付ける
-4. 貼り付けた本文の上のほうにある
-   `YOUR_GITHUB_USERNAME/my-journal` を、**自分のユーザー名/リポジトリ名に
-   書き換える**(例: `taro123/my-journal`)。その下の「↑ 必ず〜」の行は
-   消してよい
-5. **保存前の確認**: 貼り付けた本文に `YOUR_GITHUB_USERNAME` が残っていないか
-   探して、残っていたら書き換える(ここを飛ばすと日記が保存されません)
-6. 保存する
+2. **Step 3で作った自分のリポジトリ**の
+   `setup/chatgpt-project-instructions.md` を開き、「Copy raw file」ボタン
+   (Rawボタン横のコピーアイコン)で全文コピーする
+   ※ リポジトリ作成の数十秒後に、このファイルは自動であなた専用に書き換わり
+   ます(上部にあなたのリポジトリ名が入ります)。もし
+   `YOUR_GITHUB_USERNAME` のままなら、少し待ってページを開き直してください
+3. Projectの **Instructions**(指示)欄に貼り付けて保存する
 
 ## Step 6. 最初の日記を書いてみる
 
@@ -156,7 +152,7 @@ ChatGPTがあなたの日記リポジトリに読み書きできるようにし�
 | --- | --- |
 | 「保存できない」と言われる | Step 4のコネクター接続と、日記リポジトリが選択されているか |
 | 保存したはずなのにファイルがない | ChatGPTの返答に「保存しました」とあるか。エラー表示の場合は内容を確認 |
-| 日記と関係ない動きをする | Instructionsのリポジトリ名を自分のものに書き換えたか(Step 5-4) |
+| 日記と関係ない動きをする | Instructionsの上部が自分のリポジトリ名になっているか(`YOUR_GITHUB_USERNAME`のままなら自分のリポジトリのファイルからコピーし直す) |
 | Privateにし忘れた | リポジトリのSettings → 一番下のDanger Zone → Change visibility → Private |
 
 ## 付録A: ターミナルで日記リポジトリを作る(上級者向け)
